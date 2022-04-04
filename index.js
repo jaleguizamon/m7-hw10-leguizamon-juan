@@ -7,23 +7,20 @@ var textarea = document.querySelector('textarea')
 // Retrieve name and note content from cookies and localstorage
 // Then apply them to elements on the page
 // YOUR CODE HERE
-  cookieStore.get('name')
-    .then(function(cookieObj) {
-      if (cookieObj) {
-        nameSpan.textContent = cookieObj.value
-      }
-    })
+cookieStore.get('name')
+  .then(function(cookieObj) {
+    if (cookieObj) {
+      nameSpan.textContent = cookieObj.value
+    }
+  })
 
-  var textObj = localStorage.getItem('text')
+var textObj = localStorage.getItem('text')
 
-  console.log(textObj)
-  if (textObj) {
-    textarea.textContent = textObj
-  } else {
-    textarea.textContent = ''
-  }
-
-
+if (textObj) {
+  textarea.textContent = textObj
+} else {
+  textarea.textContent = ''
+}
 
 formEl.onsubmit = function(e) {
   // prevents form submission
@@ -33,7 +30,7 @@ formEl.onsubmit = function(e) {
   // YOUR CODE HERE
   textInput = textarea.value
 
-  document.cookie = "name=" + nameSpan.textContent + ";"
+  document.cookie = 'name=' + nameSpan.textContent + ';'
   localStorage.setItem('text', textInput)
   // triggers thumbs up animation
   this.elements.save.classList.add('emoji')
@@ -44,7 +41,7 @@ clear.onclick = function() {
   // Clear localstorage's content
   // YOUR CODE HERE
   textarea.value = ''
-  localStorage.setItem('text', '')
+  localStorage.clear()
   // triggers thumbs up animation
   this.classList.add('emoji')
 }
